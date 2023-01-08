@@ -1,0 +1,171 @@
+body {
+  background: RGBA(7,43,0,0.28);
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.game-layout {
+  display: block;
+  height: 100vh;
+  min-height: 800px;
+  button {
+    font-size: 20px;
+    border: 1px solid rgb(148, 69, 69);
+    margin-top: 20px;
+    margin-left: 20px;
+    border-radius: 12px;
+    padding: 8px;
+  }
+  .title {
+    display: block;
+    font-size: 30px;
+    padding: 40px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .window {
+    position: relative;
+    height: 600px;
+    margin: 0 auto;
+    box-shadow: 0 0 20px 10px #ffffff;
+    background: #fff;
+    border-radius: 5px;
+    overflow: hidden;
+    width: 90%;
+
+    &-footer {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+
+      .left-force,
+      .right-force {
+        color: #FFD0FD;
+        font-size: 18px;
+        position: absolute;
+        bottom: 15px;
+      }
+
+      .left-force {
+        left: 15px;
+      }
+
+      .right-force {
+        right: 15px;
+      }
+    }
+
+    .base {
+      width: 0 !important;
+      height: 0 !important;
+      border-left: 100px solid transparent;
+      border-right: 100px solid transparent;
+      border-bottom: 100px solid RGB(85,228,74);
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      background: rgba(0, 0, 0, .5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      z-index: -1;
+      opacity: 0;
+      transition: all 2s ease;
+    }
+
+    &.gameover {
+      &::after {
+        z-index: 9;
+        opacity: 1;
+      }
+    }
+
+    &.winner {
+      &::after {
+        z-index: 9;
+        opacity: 1;
+        background: RGBA(127,201,136,0.65);
+      }
+    }
+
+    .result-title {
+      font-size: 34px;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 999;
+      color: #fff;
+      text-align:center;
+
+      h2 {
+        color: #fff;
+      }
+
+      button {
+        font-size: 20px;
+        border: 1px solid #fff;
+        margin: 0 auto;
+        margin-top: 20px;
+        cursor: pointer;
+      }
+    }
+
+    .progress {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: #fff;
+
+      .line {
+        display: block;
+        background: green;
+        height: 3px;
+        transition: background 1s ease;
+      }
+    }
+  }
+}
+
+.icon-play {
+  width: 80px;
+  height: 80px;
+  margin: 20px;
+  cursor: pointer;
+
+  @keyframes heartBeat {
+    0% {
+      transform: scale(1);
+    }
+
+    50% {
+      transform: scale(1.1);
+
+    }
+
+    100%{
+      transform: scale(1);
+    }
+  }
+
+  &:not(.icon-pause) {
+    animation: heartBeat 1.5s infinite;
+  }
+}
